@@ -1,0 +1,29 @@
+<p>sign-up works!</p>
+
+  <form [formGroup]="signUpForm" (ngSubmit)="register()">
+    <table>
+      <tr>
+        <td>Username:</td>
+        <td><input type="text" formControlName="username"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type="password" formControlName="password">
+      </tr>
+      <tr>
+        <td></td>
+        <td><button type="submit">Sign up</button></td>
+      </tr>
+      <tr>
+        <td>
+          Don't have a account ? Click here to sign up
+        </td>
+        <td>
+          <mat-button-toggle  type="button" [routerLink]="['/signup']">
+            Sign Up
+          </mat-button-toggle>
+        </td>
+      </tr>
+
+    </table>
+  </form>

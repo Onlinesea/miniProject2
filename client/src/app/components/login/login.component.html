@@ -1,0 +1,32 @@
+<p>login works!</p>
+
+  <form [formGroup]="loginForm" (ngSubmit)="authenticate()">
+    <table>
+      <tr>
+        <td>Username:</td>
+        <td><input type="text" formControlName="name"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type="password" formControlName="password">
+      </tr>
+      <tr>
+        <td></td>
+        <td><button type="submit">Login</button></td>
+      </tr>
+      <tr>
+        <td>
+          Don't have a account ? Click here to sign up
+        </td>
+        <td>
+          <mat-button-toggle mat-button color="primary" type="button" [routerLink]="['/signup']">
+            Sign Up
+          </mat-button-toggle>
+        </td>
+      </tr>
+
+    </table>
+  </form>
+
+  <!-- For testing purpose -->
+  <mat-button-toggle mat-button color="warn" [routerLink]="['/home/sea']">Home</mat-button-toggle>

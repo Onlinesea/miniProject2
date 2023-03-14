@@ -1,0 +1,48 @@
+<p>home works!</p>
+
+<!-- <div class="avatar-container">
+    <div class="avatar-image-container">
+      <img [src]="userAvatar.image" class="avatar-image" alt="avatar image">
+    </div>
+    <div class="avatar-progress-container">
+      <mat-progress-bar class="avatar-progress" [value]="progress"></mat-progress-bar>
+    </div>
+    <h1>{{userAvatar.growthState}}</h1>
+  </div> -->
+  
+  <div class="avatar-container">
+    <mat-card>
+      <mat-card-header >
+        <mat-card-title>{{userAvatar.name}}</mat-card-title>
+        <mat-card-subtitle>{{userAvatar.growthState}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <span>{{userAvatar.currentProgress}}/{{userAvatar.evolution[this.userAvatar.evolution.length-1]}}</span>
+        <mat-progress-bar [value]="progress"></mat-progress-bar>
+
+            <img [src]="userAvatar.image" alt="{{userAvatar.name}} Avatar">
+            <!-- <mat-progress-spinner class="progress-circle"
+                                  [diameter]="80"
+                                  [strokeWidth]="10"
+                                  [value]="progress"
+                                  [mode]="'determinate'"
+                                  color="accent">
+            </mat-progress-spinner> -->
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+
+  <div> 
+    <mat-card>
+      <mat-card-header [routerLink]="['/journal/sea']">
+        Journal
+      </mat-card-header>
+    </mat-card>
+    <mat-card>
+      <mat-card-header [routerLink]="['/game/sea']">
+        Game
+      </mat-card-header>
+    </mat-card>
+  </div>
+  
