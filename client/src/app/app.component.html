@@ -5,6 +5,9 @@
     <span *ngIf="loggedIn">
       <mat-button-toggle [routerLink]="'/home'">Home</mat-button-toggle>
       <mat-button-toggle (click)="logout()">Logout</mat-button-toggle>
+      <mat-button-toggle mat-raised-button color="warn" (click)="deleteAccount()">
+        Delete My Account 
+      </mat-button-toggle>
     </span>
   </mat-toolbar>
   

@@ -73,6 +73,10 @@ export class JournalService {
     const data = { title, message, token };
     return lastValueFrom(this.http.post(`${this.baseUrl}/api/sendNotification`,data,this.getHttpOptions()))
   }
+  deleteAccount():Promise<any>{
+    return lastValueFrom(this.http.delete(`${this.baseUrl}/api/account`,this.getHttpOptions()))
+
+  }
 }
   
 

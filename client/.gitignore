@@ -42,5 +42,5 @@ testem.log
 Thumbs.db
 
 #firebaseConfig
-src/environments/environment.ts 
-/src/firebase-messaging-sw.js
+# src/environments/environmentProd.ts 
+# /src/firebase-messaging-sw.js
