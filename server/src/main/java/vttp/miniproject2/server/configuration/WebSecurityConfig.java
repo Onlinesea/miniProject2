@@ -52,13 +52,27 @@ public class WebSecurityConfig {
         return http.cors().and()
                 .csrf().disable()
                 .authorizeHttpRequests()
-                        .requestMatchers("/", "/index.html", "/login", "/static/**", "/runtime*.js", "/polyfills*.js", "/styles*.js", "/main*.js", "/vendor*.js", "/favicon.ico").permitAll()
-                        .requestMatchers("/", "/authenticate", "/api/registerUser").permitAll()
+                        .requestMatchers("/", "/authenticate", "/api/registerUser", "/index.html", "/login", "/static/**", "/runtime*.js", "/polyfills*.js", "/styles*.js", "/main*.js", "/vendor*.js", "/favicon.ico").permitAll()
                         .anyRequest().hasAnyRole("User", "Admin").and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+    // @Bean
+    // public SecurityFilterChain configure(final HttpSecurity http) throws Exception {
+    //     return http.cors().and()
+    //             .csrf().disable()
+    //             .requestMatchers(matchers -> matchers
+    //                     .antMatchers("/", "/index.html", "/login", "/static/**", "/runtime*.js", "/polyfills*.js", "/styles*.js", "/main*.js", "/vendor*.js", "/favicon.ico").permitAll()
+    //                     .antMatchers("/authenticate", "/api/registerUser").permitAll()
+    //             )
+    //             .authorizeRequests()
+    //                     .anyRequest().hasAnyRole("User", "Admin")
+    //             .and()
+    //             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+    //             .and()
+    //             .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+    // }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
