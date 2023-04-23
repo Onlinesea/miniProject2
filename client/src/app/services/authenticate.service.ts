@@ -9,7 +9,8 @@ import { User,UserData,LoginData} from 'src/app/models/UserData';
   providedIn: 'root'
 })
 export class AuthenticateService {
-  
+  // baseUrl="https://cynical-straw.up.railway.app"
+  baseUrl="http://localhost:8080"
   constructor(private http: HttpClient, private router: Router) {
     this.loggedInStatus.next(!!localStorage.getItem('userData'));
    }
@@ -25,7 +26,7 @@ export class AuthenticateService {
       firstName: data.firstName,
       lastName: data.lastName
     }
-    this.http.post("https://cynical-straw.up.railway.app/api/registerUser", body).subscribe(response=>{
+    this.http.post(`${this.baseUrl}/api/registerUser`, body).subscribe(response=>{
       console.log(response);
     })
   }
@@ -36,7 +37,7 @@ export class AuthenticateService {
       password: data.password
     }
 
-    return lastValueFrom(this.http.post("https://cynical-straw.up.railway.app/authenticate", body))
+    return lastValueFrom(this.http.post(`${this.baseUrl}/authenticate`, body))
   }
 
   private loggedInStatus = new BehaviorSubject<boolean>(false);

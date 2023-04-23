@@ -30,7 +30,7 @@ export class PaypalComponent implements OnInit, AfterViewInit {
   getEmailData() {
     this.emailData = {
       to: this.email,
-      subject: 'Test Email',
+      subject: 'Email testing from railway',
       body: 'Transaction Successful. Thanks for the coffee.',
     }
 

@@ -6,6 +6,8 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class EmailService {
+  // baseUrl="https://cynical-straw.up.railway.app"
+  baseUrl="http://localhost:8080"
 
   constructor(private http:HttpClient) { }
 
@@ -24,6 +26,6 @@ export class EmailService {
   }
   sendEmail(data:any):Promise<any>{
 
-    return lastValueFrom(this.http.post('https://cynical-straw.up.railway.app/api/sendEmail',data,this.getHttpOptions()))
+    return lastValueFrom(this.http.post(`${this.baseUrl}/api/sendEmail`,data,this.getHttpOptions()))
   }
 }
