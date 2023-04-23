@@ -16,7 +16,7 @@ import { JournalComponent } from './components/journal/journal.component';
 import { GameComponent } from './components/game/game.component';
 import { MaterialModule } from './material.modules';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { AggridComponent } from './componet/aggrid/aggrid.component';
+import { AggridComponent } from './components/aggrid/aggrid.component'
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from './environment';

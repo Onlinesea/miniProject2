@@ -2,7 +2,6 @@ import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { user, userIsValid } from 'src/app/models/model';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { JournalService } from 'src/app/services/journal.service';
 import { UserService } from 'src/app/services/user.service';

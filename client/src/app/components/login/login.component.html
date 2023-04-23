@@ -1,5 +1,32 @@
-<p>login works!</p>
 <div class="login-container">
+  <div class="login">
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+      
+      <mat-label>Email:</mat-label>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" formControlName="username">
+      </mat-form-field>
+      <mat-label>Password:</mat-label>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Login</button>
+
+      Don't have an account? Click here to sign up
+
+      <button mat-raised-button color="accent" type="button" [routerLink]="['/signup']">
+        Sign Up
+      </button>
+
+    </form>
+  </div>
+</div>
+
+<!-- <div class="login-container">
     <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
       <table>
         <tr>
@@ -27,12 +54,10 @@
 
       </table>
     </form>
-</div>
-  <!-- For testing purpose -->
-  <!-- <asl-google-signin-button *ngIf="!gUser"></asl-google-signin-button>
+</div> -->
+<!-- For testing purpose -->
+<!-- <asl-google-signin-button *ngIf="!gUser"></asl-google-signin-button>
   <div *ngIf="gUser">
     <img src="{{ gUser.photoUrl }}">
       <h4>{{ gUser.name }}</h4>
       <p>{{ gUser.email  }}</p> -->
-
-

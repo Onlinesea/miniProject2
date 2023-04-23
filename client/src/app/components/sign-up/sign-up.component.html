@@ -1,42 +1,41 @@
-<p>sign-up works!</p>
 <div class="login-container">
-  <form [formGroup]="signUpForm" (ngSubmit)="registerUser()" class="form">
-    
-    <table>
-      <mat-form-field appearance="outline">
-      <tr>
-        <mat-label>Email: </mat-label>
-        <td><input type="text" formControlName="username"></td>
-      </tr>
-    </mat-form-field>
-      <tr>
-        <td>Password:</td>
-        <td><input type="password" formControlName="password">
-      </tr>
-      <tr>
-        <td>First name:</td>
-        <td><input type="text" formControlName="firstName"></td>
-      </tr>
-      <tr>
-          <td>Last Name:</td>
-          <td><input type="text" formControlName="lastName"></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><button mat-raised-button color="primary" type="submit">Sign up</button></td>
-      </tr>
-      
-      <tr>
-        <td>
-          Already have an account ? Click here to log in 
-        </td>
-        <td>
-          <button  mat-raised-button color="primary" type="button" [routerLink]="['/login']">
-            Login
-          </button>
-        </td>
-      </tr>
 
-    </table>
-  </form>
+    <mat-card-header>
+      <mat-card-title>Sign up Form</mat-card-title>
+    </mat-card-header>
+ <br>
+  <div class="login">
+
+
+    <form [formGroup]="signUpForm" (ngSubmit)="registerUser()" class="form">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" formControlName="username">
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>First name</mat-label>
+        <input matInput type="text" formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input matInput type="text" formControlName="lastName">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Sign up</button>
+
+      Already have an account? Click here to log in
+
+      <button mat-raised-button color="accent" type="button" [routerLink]="['/login']">
+        Login
+      </button>
+
+    </form>
+  </div>
 </div>

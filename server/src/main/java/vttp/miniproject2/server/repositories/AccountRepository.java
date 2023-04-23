@@ -55,8 +55,6 @@ public class AccountRepository {
     }
     public int deleteEntry(String date, String user){
         int result=template.update(DELETE_ENTRY,date,user);
-
-
         return result;
     }
 
@@ -70,7 +68,7 @@ public class AccountRepository {
     }
 
     public JournalEntry getJournalByUserAndDate(String date, String user) {
-        SqlRowSet rs = template.queryForRowSet(GET_JOURNAL_BY_USER, user);
+        SqlRowSet rs = template.queryForRowSet(GET_JOURNAL_BY_USER_AND_DATE, user,date);
         JournalEntry entry = new JournalEntry();
         while(rs.next()){
             entry.setUser(user);

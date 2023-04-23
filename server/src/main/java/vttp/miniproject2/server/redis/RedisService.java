@@ -39,6 +39,7 @@ public class RedisService implements RedisRepo {
 
     @Override
     public String cache(JournalEntry entry){
+
         SecureRandom secureRandom = new SecureRandom();
         byte[] secretKey = new byte[32];
         secureRandom.nextBytes(secretKey);

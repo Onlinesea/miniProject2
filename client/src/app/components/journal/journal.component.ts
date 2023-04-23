@@ -111,11 +111,11 @@ export class JournalComponent implements OnInit {
       alert("Delete sucessfully, within 5min you can undo")
       this.deleteEntryKey=response.key
       this.deleted=true
+      console.log("deleted entry key > " + response.key)
       this.getJournalList(this.user);
     }).catch(error => {
         console.error('Error deleting entry:', error);
-    });
-      
+    });     
   }
 
   undo(){

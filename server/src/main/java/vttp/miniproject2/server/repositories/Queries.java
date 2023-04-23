@@ -7,5 +7,5 @@ public class Queries {
     final public static String DELETE_USER="delete from user where username=?";
     final public static String DELETE_USER_ROLE="delete from user_role where user_id=?";
     final public static String GET_JOURNAL_BY_USER="select * from journal_entries where user like ?";
-    final public static String GET_JOURNAL_BY_USER_AND_DATE="select * from journal_entries where user like ?";
+    final public static String GET_JOURNAL_BY_USER_AND_DATE="select * from journal_entries where user like ? and date= ?";
 }
