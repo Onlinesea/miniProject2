@@ -9,8 +9,8 @@ import { User,UserData,LoginData} from 'src/app/models/UserData';
   providedIn: 'root'
 })
 export class AuthenticateService {
-  // baseUrl="https://cynical-straw.up.railway.app"
-  baseUrl="http://localhost:8080"
+  baseUrl="https://cynical-straw.up.railway.app"
+  // baseUrl="http://localhost:8080"
   constructor(private http: HttpClient, private router: Router) {
     this.loggedInStatus.next(!!localStorage.getItem('userData'));
    }

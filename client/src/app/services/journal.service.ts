@@ -11,8 +11,8 @@ export class JournalService {
 
 
   constructor(private http: HttpClient) {}
-  // baseUrl="https://cynical-straw.up.railway.app"
-    baseUrl="http://localhost:8080"
+  baseUrl="https://cynical-straw.up.railway.app"
+    // baseUrl="http://localhost:8080"
 
   private getHttpOptions() {
     const userDataString = localStorage.getItem('userData');
