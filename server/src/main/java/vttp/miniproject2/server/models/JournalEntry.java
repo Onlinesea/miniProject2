@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,22 +19,21 @@ import jakarta.json.JsonReader;
 
 
 @Component
-
-public class Quote implements Serializable {
-    private static final Logger logger = LoggerFactory.getLogger(Quote.class);
+public class JournalEntry implements Serializable {
+    private static final Logger logger = LoggerFactory.getLogger(JournalEntry.class);
 
     private String user;
-    private String message;
+    private String quoteMessage;
     private String author;
     private String thoughts;
-    private String date;  
+    private Date date;  
     private String feelings;
 
     public static List createList(String json) throws IOException{
 
-        Quote quote = new Quote();
+        JournalEntry quote = new JournalEntry();
 
-        List<Quote> quoteList = new LinkedList<>();
+        List<JournalEntry> quoteList = new LinkedList<>();
 
         //Creating a List of Quote from the Json file received from the api
         try(InputStream is = new ByteArrayInputStream(json.getBytes())){
@@ -41,7 +41,7 @@ public class Quote implements Serializable {
             JsonArray o = r.readArray();
             quoteList = o.stream()
                         .map(v->(JsonObject)v)
-                        .map(v-> quote.createQuote(v))
+                        .map(v-> quote.createJournalEntry(v))
                         .toList(); 
 
             //RedisService svc = new RedisService();
@@ -52,12 +52,12 @@ public class Quote implements Serializable {
         return quoteList;
     }
 
-    public static Quote createQuote(JsonObject v){
+    public static JournalEntry createJournalEntry(JsonObject v){
 
-        Quote quote = new Quote();
+        JournalEntry quote = new JournalEntry();
 
         String message = v.getString("q"); 
-        quote.setMessage(message);
+        quote.setQuoteMessage(message);
 
         String author = v.getString("a");
         quote.setAuthor(author);   
@@ -67,12 +67,38 @@ public class Quote implements Serializable {
         return quote;
     }
 
-    public String getMessage() {
-        return message;
+    // public JsonObject JournalEntryToJson(JournalEntry journalEntry){
+
+    //     return Json.createObjectBuilder()
+    //             .add("user", journalEntry.getUser())
+    //             .add("message", journalEntry.getQuoteMessage())
+    //             .add("author", journalEntry.getAuthor())
+    //             .add("thoughts", journalEntry.getThoughts())
+    //             .add("date", journalEntry.getDate().toString())
+    //             .add("feelings", journalEntry.getDate().toString())
+    //             .build();
+    // }
+
+    public JsonObject JournalEntryToJson(){
+
+        return Json.createObjectBuilder()
+                .add("user", user)
+                .add("message", quoteMessage)
+                .add("author", author)
+                .add("thoughts", thoughts)
+                .add("date",date.toString())
+                .add("feelings", feelings)
+                .build();
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+
+
+    public String getQuoteMessage() {
+        return quoteMessage;
+    }
+
+    public void setQuoteMessage(String message) {
+        this.quoteMessage = message;
     }
 
     public String getAuthor() {
@@ -91,11 +117,11 @@ public class Quote implements Serializable {
         this.thoughts = thoughts;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

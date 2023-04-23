@@ -1,2 +1,33 @@
-<mat-toolbar align="center"> My Application</mat-toolbar>
-<router-outlet></router-outlet>
+<div class="app-container">
+  <mat-toolbar class="mat-toolbar" color="primary">
+    <span class="toolbar-title">My Application</span>
+    <span class="spacer"></span>
+    <span *ngIf="loggedIn">
+      <mat-button-toggle [routerLink]="'/home'">Home</mat-button-toggle>
+      <mat-button-toggle (click)="logout()">Logout</mat-button-toggle>
+    </span>
+  </mat-toolbar>
+  
+  <div class="content">
+    <mat-card *ngIf="message">
+      <mat-card-header>
+        <mat-card-title>Notification: {{ message.notification.title }} </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content >
+        <p><strong>{{ message.notification.body }}</strong></p>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card *ngIf="!message">
+      <mat-card-header>
+        <mat-card-title>Notification: </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>You have no notification</strong></p>
+      </mat-card-content>
+    </mat-card>
+    <button (click)="sendNotification()">Send Notification</button>
+    <router-outlet></router-outlet>
+  </div>
+</div>

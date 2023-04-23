@@ -1,29 +1,42 @@
 <p>sign-up works!</p>
-
-  <form [formGroup]="signUpForm" (ngSubmit)="register()">
+<div class="login-container">
+  <form [formGroup]="signUpForm" (ngSubmit)="registerUser()" class="form">
+    
     <table>
+      <mat-form-field appearance="outline">
       <tr>
-        <td>Username:</td>
+        <mat-label>Email: </mat-label>
         <td><input type="text" formControlName="username"></td>
       </tr>
+    </mat-form-field>
       <tr>
         <td>Password:</td>
         <td><input type="password" formControlName="password">
       </tr>
       <tr>
-        <td></td>
-        <td><button type="submit">Sign up</button></td>
+        <td>First name:</td>
+        <td><input type="text" formControlName="firstName"></td>
       </tr>
       <tr>
+          <td>Last Name:</td>
+          <td><input type="text" formControlName="lastName"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button mat-raised-button color="primary" type="submit">Sign up</button></td>
+      </tr>
+      
+      <tr>
         <td>
-          Don't have a account ? Click here to sign up
+          Already have an account ? Click here to log in 
         </td>
         <td>
-          <mat-button-toggle  type="button" [routerLink]="['/signup']">
-            Sign Up
-          </mat-button-toggle>
+          <button  mat-raised-button color="primary" type="button" [routerLink]="['/login']">
+            Login
+          </button>
         </td>
       </tr>
 
     </table>
   </form>
+</div>

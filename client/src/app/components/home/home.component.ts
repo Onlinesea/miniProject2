@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { digimonAvatar } from 'src/app/model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { User, UserData } from 'src/app/models/UserData';
+// import { digimonAvatar } from 'src/app/model';
 
 @Component({
   selector: 'app-home',
@@ -7,23 +10,41 @@ import { digimonAvatar } from 'src/app/model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
+  currentUser!: User
 
-  userAvatar!: digimonAvatar;
-  progress!: number
+  constructor(private activatedRoute:ActivatedRoute,
+              private router:Router){}
 
-  constructor(){}
+  ngOnInit(): void {
+    const userData = localStorage.getItem('userData');
 
-    ngOnInit(): void {
-      this.userAvatar = { // create new digimonAvatar object and assign it to userAvatar
-        name: 'Agumon',
-        image: 'https://wikimon.net/images/b/b9/Agumon_vpet_vb.png',
-        currentProgress: 21,
-        growthState: 'Child',
-        evolution: [3,7,13,20,28]
-      };
-      this.progress = 100 * (this.userAvatar.currentProgress / this.userAvatar.evolution[this.userAvatar.evolution.length-1]);
+    if (userData) {
+      this.currentUser = JSON.parse(userData) as User;
+      console.log(this.currentUser);
+    } else {
+      // Handle the case when userData is null
+      console.error('User data not found in local storage');
     }
   
+    console.log(localStorage.getItem('userData'));
   }
+
+  loadJournal(){
+    this.router.navigate([`/journal`])
+  }
+  loadGame(){
+    this.router.navigate([`/game`])
+  }
+  loadPayment(){
+    this.router.navigate([`/payment`])
+  }
+  loadMap(){
+    this.router.navigate([`/googleMap`])
+  }
+  loadAggrid(){
+    this.router.navigate([`/aggrid`])
+  }
+
+}
 
 

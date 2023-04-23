@@ -1,1 +1,173 @@
-<p>journal works!</p>
+<!-- <p>journal works!</p>
+<mat-button-toggle (click)="setNewEntryToTrue()">New Entry</mat-button-toggle>
+
+<div *ngIf="deleted">
+  <mat-button-toggle  (click)="undo()">Undo Delete</mat-button-toggle>
+</div>
+
+<div *ngIf="newEntry"> 
+<form [formGroup]="entryForm" (ngSubmit)="saveJournalEntry()">
+  <table>
+    <tr>
+      <td>Date: </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
+      </td>
+    </tr>
+    <tr>
+      <td>Message</td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Message</mat-label>
+          <div *ngIf="ifQuote==false">
+          <input matInput #message maxlength="256" placeholder="Any Quote you would like to add" formControlName="message">
+        </div>
+          <div *ngIf="ifQuote==true">
+          <input matInput #message maxlength="256" placeholder="Any Quote you would like to add" formControlName="message" [value]=quote>
+          </div>
+        </mat-form-field> 
+      </td>
+      <td>
+
+      </td>
+    </tr>
+    <tr>
+      <td>Author:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>Author</mat-label>
+          <input matInput formControlName="author">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Thoughts</td>
+      <td>        
+        <mat-form-field class="example-full-width">
+        <mat-label>Thoughts</mat-label>
+        <input matInput #message maxlength="256" placeholder="What are your thought today" formControlName="thoughts">
+        <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
+    </td>
+    </tr>
+    <tr>
+      <td>Feelings</td>
+      <td> 
+        <mat-form-field class="example-full-width">
+          <mat-label>Feelings</mat-label>
+          <input matInput #message maxlength="256" placeholder="How are you feeling today" formControlName="feelings">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <button type="submit">Sign up</button>
+</form>
+<button (click)="getQuote()">Get Quote</button>
+<p *ngIf="quote">
+  Message: {{quote}}
+  Author: {{quoteAuthor}}
+</p>
+</div>
+
+
+<div *ngIf="userJournalList && !newEntry" > 
+    <h1>Hello {{user}}, these are your journal entries!</h1> 
+    <mat-card *ngFor="let j of userJournalList.journalList">
+      <mat-card-header>
+        <mat-card-title>Date: {{j.date}}</mat-card-title>
+        <mat-card-subtitle>Feeling: {{j.feelings}} </mat-card-subtitle>
+      </mat-card-header>
+    
+      <mat-card-content>
+        <p>Your thoughts: {{j.thoughts}}</p>
+        Quote of that day: {{j.message}} -{{j.author}}
+    
+        <mat-button-toggle (click)="remove(j.date.toString())">Delete</mat-button-toggle>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div> -->
+    
+
+
+ 
+  
+  <div class="container">
+    <h1 *ngIf="!newEntry">Journal works!</h1>
+    <mat-button-toggle (click)="setNewEntryToTrue()" *ngIf="!newEntry">New Entry</mat-button-toggle>
+  
+    <div *ngIf="deleted">
+      <mat-button-toggle (click)="undo()">Undo Delete</mat-button-toggle>
+    </div>
+  
+    <div *ngIf="newEntry">
+      <h2>Create a new journal entry</h2>
+      <form [formGroup]="entryForm" (ngSubmit)="saveJournalEntry()" class="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Message</mat-label>
+          <input matInput #message maxlength="256" placeholder="Any Quote you would like to add" formControlName="message" [value]="ifQuote ? quote : ''">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Author</mat-label>
+          <input matInput formControlName="author" [value]="ifQuote ? quoteAuthor : ''">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Thoughts</mat-label>
+          <textarea matInput placeholder="What are your thoughts today" formControlName="thoughts"></textarea>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Feelings</mat-label>
+          <input matInput #message maxlength="256" placeholder="How are you feeling today" formControlName="feelings">
+        </mat-form-field>
+  
+        <div class="actions">
+          <button mat-raised-button color="primary" type="submit">Save Entry</button>
+          <button mat-raised-button color="accent" (click)="getQuote()">Get Quote</button>
+        </div>
+      </form>
+  
+      <div *ngIf="quote" class="quote">
+        <p><strong>Message:</strong> {{quote}}</p>
+        <p><strong>Author:</strong> {{quoteAuthor}}</p>
+      </div>
+    </div>
+  
+    <div *ngIf="userJournalList && !newEntry">
+      <h2>Hello {{user}}, these are your journal entries!</h2>
+      <mat-card *ngFor="let j of userJournalList.journalList">
+        <mat-card-header>
+          <mat-card-title>Date: {{j.date}}</mat-card-title>
+          <mat-card-subtitle>Feeling: {{j.feelings}}</mat-card-subtitle>
+        </mat-card-header>
+  
+        <mat-card-content>
+          <p><strong>Your thoughts:</strong> {{j.thoughts}}</p>
+          <p><strong>Quote of the day:</strong> {{j.message}} -{{j.author}}</p>
+        </mat-card-content>
+  
+        <mat-card-actions>
+          <button mat-button color="warn" (click)="remove(j.date.toString())">Delete</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  

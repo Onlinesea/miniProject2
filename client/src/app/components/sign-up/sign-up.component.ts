@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { user } from 'src/app/model';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { JournalService } from 'src/app/services/journal.service';
 
 @Component({
@@ -11,11 +11,11 @@ import { JournalService } from 'src/app/services/journal.service';
 })
 export class SignUpComponent {
 
-  user!: user; 
   signUpForm!:FormGroup;
 
 
-  constructor(public fb:FormBuilder, private router:Router, private journalSvc:JournalService){}
+  constructor(public fb:FormBuilder, private router:Router, 
+    private journalSvc:JournalService,private authSvc:AuthenticateService){}
 
   ngOnInit(): void {
       this.signUpForm =this.createForm();
@@ -24,16 +24,16 @@ export class SignUpComponent {
   private createForm(): FormGroup {
     return this.fb.group({
       username: this.fb.control<string>('', [ Validators.required] ),
-      password: this.fb.control<string>('',[Validators.required])
+      password: this.fb.control<string>('',[Validators.required]),
+      firstName: this.fb.control('', [Validators.required]),
+      lastName: this.fb.control('', [Validators.required])
     })
   }
 
-  register(){
-    const user: user = this.signUpForm.value;
-    this.journalSvc.registerUser(user).then(response =>{
-      console.info(response);
-    }).catch(error=>{
-      console.log(error)
-    })
+  registerUser() {
+    const formData = this.signUpForm.value;
+    this.authSvc.register(formData)
+    alert("sign up successful")
+    this.router.navigate(["/login"])
   }
 }

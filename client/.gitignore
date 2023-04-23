@@ -40,3 +40,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+#firebaseConfig
+src/environments/environment.ts 
+/src/firebase-messaging-sw.js

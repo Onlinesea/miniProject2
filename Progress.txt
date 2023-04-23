@@ -1,0 +1,19 @@
+Things that are required to do:
+1. Allow saving journal from angular 
+2. JWT secruity token
+4. Saving the avatar into the database
+5. Complete journal and game loading for correct user
+6. Beautifying the UI
+7. Google log in not working
+Completed features:
+1. Saving journal into database on the backend
+2. Retriving Journal from the database 
+3. Retriving journal from the database and display into angular 
+4. Authenticate user completed -> wrong password cant log in 
+5. Get quote from server api
+6. Create new account for sign up, then redirect back to the log in page
+
+
+
+Note to myself:
+I need to include thing that I can present to other to prove my worth 

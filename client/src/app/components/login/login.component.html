@@ -1,32 +1,38 @@
 <p>login works!</p>
+<div class="login-container">
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+      <table>
+        <tr>
+          <td>Email:</td>
+          <td><input type="text" formControlName="username"></td>
+        </tr>
+        <tr>
+          <td>Password:</td>
+          <td><input type="password" formControlName="password">
+        </tr>
+        <tr>
+          <td></td>
+          <td><button type="submit">Login</button></td>
+        </tr>
+        <tr>
+          <td>
+            Don't have a account ? Click here to sign up
+          </td>
+          <td>
+            <button mat-raised-button color="primary" type="button" [routerLink]="['/signup']">
+              Sign Up
+            </button>
+          </td>
+        </tr>
 
-  <form [formGroup]="loginForm" (ngSubmit)="authenticate()">
-    <table>
-      <tr>
-        <td>Username:</td>
-        <td><input type="text" formControlName="name"></td>
-      </tr>
-      <tr>
-        <td>Password:</td>
-        <td><input type="password" formControlName="password">
-      </tr>
-      <tr>
-        <td></td>
-        <td><button type="submit">Login</button></td>
-      </tr>
-      <tr>
-        <td>
-          Don't have a account ? Click here to sign up
-        </td>
-        <td>
-          <mat-button-toggle mat-button color="primary" type="button" [routerLink]="['/signup']">
-            Sign Up
-          </mat-button-toggle>
-        </td>
-      </tr>
-
-    </table>
-  </form>
-
+      </table>
+    </form>
+</div>
   <!-- For testing purpose -->
-  <mat-button-toggle mat-button color="warn" [routerLink]="['/home/sea']">Home</mat-button-toggle>
+  <!-- <asl-google-signin-button *ngIf="!gUser"></asl-google-signin-button>
+  <div *ngIf="gUser">
+    <img src="{{ gUser.photoUrl }}">
+      <h4>{{ gUser.name }}</h4>
+      <p>{{ gUser.email  }}</p> -->
+
+

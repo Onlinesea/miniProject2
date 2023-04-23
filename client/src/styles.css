@@ -1,4 +1,81 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+ 
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cards {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .card {
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .toolbar-title {
+    margin-left: 16px;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .content {
+    flex: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .login {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login input {
+    margin-bottom: 8px;
+  }
+  
+  .login button[type="submit"] {
+    margin-bottom: 8px;
+    align-self: flex-end;
+  }
+  
+  .login table {
+    margin-bottom: 16px;
+  }
