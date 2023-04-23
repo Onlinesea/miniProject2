@@ -24,6 +24,6 @@ export class EmailService {
   }
   sendEmail(data:any):Promise<any>{
 
-    return lastValueFrom(this.http.post('/api/sendEmail',data,this.getHttpOptions()))
+    return lastValueFrom(this.http.post('https://cynical-straw.up.railway.app/api/sendEmail',data,this.getHttpOptions()))
   }
 }

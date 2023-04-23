@@ -25,7 +25,7 @@ export class AuthenticateService {
       firstName: data.firstName,
       lastName: data.lastName
     }
-    this.http.post("http://localhost:8080/api/registerUser", body).subscribe(response=>{
+    this.http.post("https://cynical-straw.up.railway.app/api/registerUser", body).subscribe(response=>{
       console.log(response);
     })
   }
@@ -36,7 +36,7 @@ export class AuthenticateService {
       password: data.password
     }
 
-    return lastValueFrom(this.http.post("http://localhost:8080/authenticate", body))
+    return lastValueFrom(this.http.post("https://cynical-straw.up.railway.app/authenticate", body))
   }
 
   private loggedInStatus = new BehaviorSubject<boolean>(false);
