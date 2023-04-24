@@ -1,6 +1,25 @@
-.mat-toolbar{
-    position: relative;
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-.img{
-    background-image: "D:\Visa\VisaWorkshop\AngularWorkshop\MiniProject2\client\src\assets\Wallpaper1.jpg";
+
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.toolbar-title {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.router-content {
+    display: flex;
+    justify-content: center;
+    flex: 1;
 }

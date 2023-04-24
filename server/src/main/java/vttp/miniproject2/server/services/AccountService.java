@@ -27,10 +27,10 @@ public class AccountService {
     }
 
     @Transactional
-    public String deleteEntry(String date, String user){
-        JournalEntry entry= accRepo.getJournalByUserAndDate(date,user);
-        String key = redisSvc.cache(entry);
-        accRepo.deleteEntry(date, user);
+    public String deleteEntry(JournalEntry entry){
+        JournalEntry cEntry= accRepo.getJournalEntryByEntry(entry);
+        String key = redisSvc.cache(cEntry);
+        accRepo.deleteEntry(cEntry);
         return key;
     }
     @Transactional

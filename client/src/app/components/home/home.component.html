@@ -1,48 +1,55 @@
 <div class="container">
-  <div class="cards"> 
+  <div class="content">
+    <mat-card *ngIf="message">
+      <mat-card-header>
+        <mat-card-title>Notification: {{ message.notification.title }} </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content >
+        <p><strong>{{ message.notification.body }}</strong></p>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card *ngIf="!message">
+      <mat-card-header>
+        <mat-card-title>Notification: </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>You have no notification</strong></p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="cards">
     <mat-card class="card" (click)="loadJournal()">
       <mat-card-header>
+        <mat-icon>book</mat-icon>
         <mat-card-title>Journal</mat-card-title>
-      </mat-card-header>
-    </mat-card>
-    <mat-card class="card" (click)="loadGame()">
-      <mat-card-header>
-        <mat-card-title>Game</mat-card-title>
-      </mat-card-header>
-    </mat-card>
-    <mat-card class="card" (click)="loadPayment()">
-      <mat-card-header>
-        <mat-card-title>
-          <mat-icon>local_cafe</mat-icon> 
-          Donate a Coffee
-        </mat-card-title>
-      </mat-card-header>
-    </mat-card>
-    <mat-card class="card" (click)="loadMap()">
-      <mat-card-header>
-        <mat-card-title>Location</mat-card-title>
       </mat-card-header>
     </mat-card>
     <mat-card class="card" (click)="loadAggrid()">
       <mat-card-header>
+        <mat-icon>list</mat-icon>
         <mat-card-title>Journal List</mat-card-title>
+      </mat-card-header>
+    </mat-card>
+    <mat-card class="card" (click)="loadMap()">
+      <mat-card-header>
+        <mat-icon>my_location</mat-icon>
+        <mat-card-title>Location</mat-card-title>
       </mat-card-header>
     </mat-card>
   </div>
 </div>
 
-<!--  Testing purpose
-
-  <div> 
-    <mat-card>
-      <mat-card-header [routerLink]="['/journal/Hello']">
-        Journal
-      </mat-card-header>
-    </mat-card>
-    <mat-card>
-      <mat-card-header [routerLink]="['/game/sea']">
-        Game
-      </mat-card-header>
-    </mat-card>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-item" (click)="sendNotification()">
+      <mat-icon> unsubscribe</mat-icon>
+      <span>Send Notification</span>
+    </div>    
+    <div class="footer-item" (click)="loadPayment()">
+      <mat-icon>local_cafe</mat-icon>
+      <span>Donate a Coffee</span>
+    </div>
   </div>
-   -->
+</footer>

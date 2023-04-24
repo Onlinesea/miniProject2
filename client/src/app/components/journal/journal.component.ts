@@ -56,7 +56,8 @@ export class JournalComponent implements OnInit {
     console.log("new Entry:" + this.newEntry)
     this.entryForm = this.createForm();
   }
-
+  
+  maxDate = new Date();
   private createForm(): FormGroup {
     return this.fb.group({
       message: this.fb.control<string>(this.quote, [Validators.required]),
@@ -99,13 +100,13 @@ export class JournalComponent implements OnInit {
       this.ifQuote = true
     })
   }
-  remove(dateString:string){
+  remove(entry:journal){
 
-    const date = new Date(dateString);
-    const isoDateString = date.toISOString();
-    console.log(isoDateString);
-    console.log(dateString);
-    this.journalSvc.deleteEntry(dateString,this.user).then(response =>{
+    // const date = new Date(dateString);
+    // const isoDateString = date.toISOString();
+    // console.log(isoDateString);
+    // console.log(dateString);
+    this.journalSvc.deleteEntry(entry).then(response =>{
       console.info(response);
       // alert(response.key)
       alert("Delete sucessfully, within 5min you can undo")

@@ -1,7 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { CellClickedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
 import { map, Observable } from 'rxjs';
@@ -41,14 +38,11 @@ export class AggridComponent implements OnInit{
   public columnDefs: ColDef[] = [
     { field: 'date', resizable: true },
     { field: 'feelings', resizable: true },
-    { field: 'thoughts', resizable: true }
+    { field: 'thoughts', resizable: true },
+    { field: 'message', resizable: true },
+
 
   ];
-  // public columnDefs: ColDef[] = [
-  //   { field: 'make'},
-  //   { field: 'model'},
-  //   { field: 'price' }
-  // ];
 
   // DefaultColDef sets props common to all Columns
   public defaultColDef: ColDef = {
@@ -74,10 +68,6 @@ export class AggridComponent implements OnInit{
       // this.getJournalList(this.user)
     return this.userJournalList;
   }
-  // onGridReady(params: GridReadyEvent) {
-  //   this.rowData$ = this.http
-  //     .get<any[]>('https://www.ag-grid.com/example-assets/row-data.json');
-  // }
   // Example of consuming Grid Event
   onCellClicked(e: CellClickedEvent): void {
     console.log('cellClicked', e);

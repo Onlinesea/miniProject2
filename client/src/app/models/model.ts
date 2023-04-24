@@ -17,7 +17,7 @@ export interface journal{
     message:string 
     author:string
     thoughts:string 
-    date:Date
+    date:string
     feelings:string 
 }
 

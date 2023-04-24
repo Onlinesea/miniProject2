@@ -40,7 +40,7 @@ public class AccountRepository {
         }
         System.out.println("Retriving journal for user > " + journal.getUser());
         journal.setEntryList(journalList);
-        // TODO
+
         return journal;
     }
     
@@ -53,8 +53,9 @@ public class AccountRepository {
 
         return result;
     }
-    public int deleteEntry(String date, String user){
-        int result=template.update(DELETE_ENTRY,date,user);
+    public int deleteEntry(JournalEntry je){
+        int result=template.update(DELETE_ENTRY_BY_ENTRY,je.getUser(),
+        je.getDate(), je.getQuoteMessage(),je.getThoughts());
         return result;
     }
 
@@ -67,11 +68,12 @@ public class AccountRepository {
         return 1;
     }
 
-    public JournalEntry getJournalByUserAndDate(String date, String user) {
-        SqlRowSet rs = template.queryForRowSet(GET_JOURNAL_BY_USER_AND_DATE, user,date);
+    public JournalEntry getJournalEntryByEntry(JournalEntry je) {
+        SqlRowSet rs = template.queryForRowSet(GET_ENTRY_BY_ENTRY,je.getUser(), je.getQuoteMessage(), 
+        je.getAuthor(),je.getThoughts(),je.getDate(),je.getFeelings());
         JournalEntry entry = new JournalEntry();
         while(rs.next()){
-            entry.setUser(user);
+            entry.setUser(rs.getString("user"));
             entry.setQuoteMessage(rs.getString("quoteMessage"));
             entry.setAuthor(rs.getString("author"));
             entry.setThoughts(rs.getString("thoughts"));

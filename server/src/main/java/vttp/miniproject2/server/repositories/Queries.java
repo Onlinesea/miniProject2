@@ -8,4 +8,8 @@ public class Queries {
     final public static String DELETE_USER_ROLE="delete from user_role where user_id=?";
     final public static String GET_JOURNAL_BY_USER="select * from journal_entries where user like ?";
     final public static String GET_JOURNAL_BY_USER_AND_DATE="select * from journal_entries where user like ? and date= ?";
+
+    final public static String GET_ENTRY_BY_ENTRY = "select * from journal_entries where user = ? and quoteMessage = ? and author = ? and thoughts = ? and date = ? and feeling = ?;";
+    final public static String DELETE_ENTRY_BY_ENTRY="delete from journal_entries where user like ? and date= ? and quoteMessage =? and thoughts =?";
+
 }

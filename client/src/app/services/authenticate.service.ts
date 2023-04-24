@@ -28,6 +28,7 @@ export class AuthenticateService {
     }
     this.http.post(`${this.baseUrl}/api/registerUser`, body).subscribe(response=>{
       console.log(response);
+      alert("sign up successful")
     })
   }
 // logging with the user in the backend

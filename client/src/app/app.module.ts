@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { JournalComponent } from './components/journal/journal.component';
-import { GameComponent } from './components/game/game.component';
 import { MaterialModule } from './material.modules';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AggridComponent } from './components/aggrid/aggrid.component'
@@ -25,6 +24,7 @@ import { PaypalComponent } from './components/paypal/paypal.component';
 import { GoogleMapComponent } from './components/google-map/google-map.component';
 import { GoogleMapsModule } from '@angular/google-maps'
 import { AuthGuard } from './auth.guard';
+import { MatIconModule } from '@angular/material/icon';
 initializeApp(environment.firebase);
 
 const appRoutes: Routes = [
@@ -42,11 +42,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
 
   },
-  { 
-    path: 'game', 
-    component: GameComponent,
-    canActivate: [AuthGuard]
-  },
+
   { 
     path: 'aggrid', 
     component: AggridComponent,
@@ -69,7 +65,6 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     JournalComponent,
-    GameComponent,
     SignUpComponent,
     AggridComponent,
     PaypalComponent,
@@ -83,6 +78,7 @@ const appRoutes: Routes = [
     MaterialModule,
     SocialLoginModule,
     AgGridModule,
+    MatIconModule,
     AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase),
     GoogleMapsModule

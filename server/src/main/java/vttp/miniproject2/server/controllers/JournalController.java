@@ -3,8 +3,11 @@ package vttp.miniproject2.server.controllers;
 import java.io.StringReader;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,11 +99,10 @@ public class JournalController {
        entry.setAuthor(jsonObject.getString("author"));
        entry.setThoughts(jsonObject.getString("thoughts"));
 
-    //    Changing the date format based on local timezone
-        LocalDate localDate = ZonedDateTime.parse(jsonObject.getString("date"))
-                            .withZoneSameInstant(ZoneId.systemDefault())
-                            .toLocalDate();
-       entry.setDate(Date.valueOf(localDate));
+        LocalDateTime isoDatetime = LocalDateTime.parse(jsonObject.getString("date"), DateTimeFormatter.ISO_DATE_TIME);
+        ZonedDateTime utcZonedDatetime = isoDatetime.atZone(ZoneOffset.UTC);
+        ZonedDateTime sgtZonedDatetime = utcZonedDatetime.withZoneSameInstant(ZoneId.of("Asia/Singapore"));
+        entry.setDate(Date.valueOf(sgtZonedDatetime.toLocalDateTime().toLocalDate()));
        entry.setFeelings(jsonObject.getString("feelings"));
         
         int result = accSvc.saveJournalEntry(entry);
@@ -115,21 +117,28 @@ public class JournalController {
         return ResponseEntity.status(HttpStatusCode.valueOf(404)).body(json.build().toString());
     }
 
-
-    @GetMapping(path="/QuoteApi")
-    public ResponseEntity<String> retrieveQuoteofTheDay(){
-        // String resp = fireSvc.sendNotification("Hello from Xinhai", "Greetings");
-        return ResponseEntity.ok().body(quoteSvc.getQuoteofTheDay());
-        // return ResponseEntity.ok().body("ok");
-    }
-
-
-    @PutMapping("/deleteEntry")
+    @PostMapping(path="/deleteEntry")
     @PreAuthorize("hasRole('User')")
-    public ResponseEntity<String> deleteJournalEntry(@RequestParam String date, @RequestParam String user) {
-        System.out.println(" delete Entry > " + date);
-        String key="1";
-        key = accSvc.deleteEntry(date, user);
+    public ResponseEntity<String> deleteJournalEntry(@RequestBody String dataString ){
+        System.out.println("JournalEntry received from angular > " + dataString);
+       StringReader reader = new StringReader(dataString);
+        JsonReader jsonReader = Json.createReader(reader);
+       JsonObject jsonObject = jsonReader.readObject();
+       
+       JournalEntry entry = new JournalEntry();
+       entry.setUser(jsonObject.getString("user"));
+       entry.setQuoteMessage(jsonObject.getString("message"));
+       entry.setAuthor(jsonObject.getString("author"));
+       entry.setThoughts(jsonObject.getString("thoughts"));
+       String dateString = jsonObject.getString("date");
+       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+       LocalDate localDate = LocalDate.parse(dateString, formatter);
+       entry.setDate(Date.valueOf(localDate));    
+       entry.setFeelings(jsonObject.getString("feelings"));
+        
+       String key="1";
+       key = accSvc.deleteEntry(entry);
+
 
         if(!key.equals("1") ){
             JsonObjectBuilder json = Json.createObjectBuilder()
@@ -141,6 +150,15 @@ public class JournalController {
                                     .add("deleted", "false");
         return ResponseEntity.status(HttpStatusCode.valueOf(404)).body(json.build().toString());
     }
+
+
+    @GetMapping(path="/QuoteApi")
+    public ResponseEntity<String> retrieveQuoteofTheDay(){
+        // String resp = fireSvc.sendNotification("Hello from Xinhai", "Greetings");
+        return ResponseEntity.ok().body(quoteSvc.getQuoteofTheDay());
+        // return ResponseEntity.ok().body("ok");
+    }
+
 
     @PostMapping("/undo")
     @PreAuthorize("hasRole('User')")

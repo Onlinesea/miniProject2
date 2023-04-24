@@ -30,10 +30,10 @@ export class SignUpComponent {
     })
   }
 
+// Sign up then navigate to the login page 
   registerUser() {
     const formData = this.signUpForm.value;
     this.authSvc.register(formData)
-    alert("sign up successful")
     this.router.navigate(["/login"])
   }
 }

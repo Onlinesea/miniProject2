@@ -53,14 +53,21 @@ export class JournalService {
     return lastValueFrom(this.http.get(`${this.baseUrl}/api/QuoteApi`,
     {headers: this.getHttpOptions().headers}))
   }
-  deleteEntry(date:string,user:string):Promise<any>{
-    const params = new HttpParams()
-    .set("user", user)
-    .set("date", date)
+  // deleteEntry(date:string,user:string):Promise<any>{
+  //   const params = new HttpParams()
+  //   .set("user", user)
+  //   .set("date", date)
+  //   const httpOptions = this.getHttpOptions();
+  //   // return lastValueFrom(this.http.put('/api/deleteEntry',params, httpOptions))
+  //   return lastValueFrom(this.http.put(`${this.baseUrl}/api/deleteEntry?user=${encodeURIComponent(user)}&date=${encodeURIComponent(date)}`, null, httpOptions));
+  // }
+
+  deleteEntry(journalEntry:journal):Promise<any>{
     const httpOptions = this.getHttpOptions();
     // return lastValueFrom(this.http.put('/api/deleteEntry',params, httpOptions))
-    return lastValueFrom(this.http.put(`${this.baseUrl}/api/deleteEntry?user=${encodeURIComponent(user)}&date=${encodeURIComponent(date)}`, null, httpOptions));
+    return lastValueFrom(this.http.post(`${this.baseUrl}/api/deleteEntry`,journalEntry, httpOptions))
   }
+
   undoDelete(id:string){
     const httpOptions = this.getHttpOptions();
     console.log("Retriving deletedEntry > " + id)
