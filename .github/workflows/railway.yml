@@ -20,6 +20,7 @@ jobs:
         distribution: 'adopt'
 
     - name: Build Spring Boot app
+      working-directory: ./server
       run: mvn clean package -DskipTests
 
     - name: Install Railway CLI
