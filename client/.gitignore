@@ -41,7 +41,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
-firebaseConfig
-src/environments/environmentProd.ts 
-src/environments/environment.ts 
-/src/firebase-messaging-sw.js
+# firebaseConfig
+# src/environments/environmentProd.ts 
+# src/environments/environment.ts 
+# /src/firebase-messaging-sw.js
