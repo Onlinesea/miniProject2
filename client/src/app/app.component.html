@@ -1,15 +1,4 @@
-<!-- <div class="app-container">
-  <mat-toolbar class="mat-toolbar" color="primary">
-    <span class="toolbar-title">Journal Application</span>
-    <span class="spacer"></span>
-    <span *ngIf="loggedIn">
-      <mat-button-toggle [routerLink]="'/home'">Home</mat-button-toggle>
-      <mat-button-toggle (click)="logout()">Logout</mat-button-toggle>
-      <mat-button-toggle mat-raised-button color="warn" (click)="deleteAccount()">
-        Delete My Account 
-      </mat-button-toggle>
-    </span>
-  </mat-toolbar> -->
+
   <div class="app-container">
     <mat-toolbar class="mat-toolbar" color="primary">
       <button *ngIf="!isHomePage()" mat-icon-button [routerLink]="'/home'" >
@@ -25,32 +14,11 @@
         <button mat-icon-button (click)="logout()" >
           <mat-icon>logout</mat-icon>
         </button>
-        <button mat-icon-button (click)="deleteAccount()" >
-          <mat-icon>delete</mat-icon>
-        </button>
+        <mat-button-toggle mat-raised-button color="warn" (click)="deleteAccount()">
+          Delete My Account 
+        </mat-button-toggle>
       </span>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </div>
   
-  <!-- <div class="content">
-    <mat-card *ngIf="message">
-      <mat-card-header>
-        <mat-card-title>Notification: {{ message.notification.title }} </mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content >
-        <p><strong>{{ message.notification.body }}</strong></p>
-      </mat-card-content>
-    </mat-card>
-    
-    <mat-card *ngIf="!message">
-      <mat-card-header>
-        <mat-card-title>Notification: </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p><strong>You have no notification</strong></p>
-      </mat-card-content>
-    </mat-card>
-    <button mat-raised-button color="primary" (click)="sendNotification()">Send Notification</button> -->
-  <!-- </div> -->

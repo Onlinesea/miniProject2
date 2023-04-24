@@ -27,7 +27,7 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build Spring Boot app
-      run: ./mvnw clean package -DskipTests
+      run: ./mvn clean package -DskipTests
 
     - name: Install Railway CLI
       run: |
